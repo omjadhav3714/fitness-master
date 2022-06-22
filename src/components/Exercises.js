@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import { Box, Stack, Typography } from '@mui/material'
@@ -16,6 +17,20 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     setCurrentPage(value);
     window.scrollTo({ top: 1800, behaviour: 'smooth' })
   }
+
+  useEffect(() => {
+    const fetchExercisesData = async () => {
+      let exercisesData = [];
+      if (bodyPart === 'all') {
+        exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
+      } else {
+        exercisesData = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, exerciseOptions);
+      }
+      setExercises(exercisesData);
+    }
+    fetchExercisesData();
+  }, [bodyPart])
+
   return (
     <Box
       id="exercises"
