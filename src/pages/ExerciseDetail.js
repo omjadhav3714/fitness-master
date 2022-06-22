@@ -37,7 +37,9 @@ const ExcerciseDetail = () => {
 
 
   return (
-    <Box sx={{ mt: { lg: '96px', xs: '60px' } }}>
+    <Box
+      sx={{ mt: { lg: '96px', xs: '60px' } }}
+    >
       <Detail
         exerciseDetail={exerciseDetail}
       />
